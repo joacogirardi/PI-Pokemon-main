@@ -1,13 +1,31 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import { getPokemons } from "../actions";
+import { getPokemons, filterPokesByType, filterCreated } from "../actions";
 import Card from "./Card";
+import Paginado from "./Paginado";
+import styled from 'styled-components';
 
+const Div = styled.div`
+    background-color: #00000075;
+    display: block;
+    position: static;
+`
 
 const Home = function  (){
     const dispatch = useDispatch();
-    const allPokemons = useSelector((s)=> s.pokemons)
+    const allPokemons = useSelector((s)=> s.pokemonsTotal);
+    //paginado
+    const [currentPage, setCurrentPage] = useState(1);                      //actual page
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);             //pokes per page
+    const indexLastPokemon = currentPage * pokemonsPerPage                              //index last pokemon
+    const indexFirstPokemon = indexLastPokemon - pokemonsPerPage                        //index first pokemon
+    const currentPokemons = allPokemons.slice(indexFirstPokemon, indexLastPokemon)      //pokemons actual page
+
+
+    const paginado = (pageNumber)=> {
+        setCurrentPage(pageNumber)
+    }
 
     useEffect(()=>{
         dispatch(getPokemons())
@@ -19,44 +37,69 @@ const Home = function  (){
         dispatch(getPokemons())
     };
 
+    function handleFIlterType(e){
+        dispatch(filterPokesByType(e.target.value));
+    };
+
+    function handleFilterCreated(e){
+        dispatch(filterCreated(e.target.value))
+    };
+
     return(
-    //     <body className="bg">
-    // <div className="landing">
-    //     <h1>Welcome back</h1>
-    // </div>
-    //     </body>
 
         <div>
+            <Div>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg' alt='not found' />
             <Link to= '/pokemons'>Create Pokemon</Link>
-            <h1>Create new Pokemon</h1>
             <button onClick={e=> {HandleClick(e)}}>
-                reCharge Pokemons
+                Remove filters
             </button>
-            <div>
-                <select>
+                <select name="Order by">
                     <option value='asc'>Ascendent</option>
                     <option value='desc'>Descendent</option>
                 </select>
                 <select>
-                    <option value='type'>Type</option>
-                    <option value='name'>Name</option>
+                    <option value='type'>alphabetic</option>
+                    <option value='name'>attack</option>
                 </select>
-                <select>
-                    <option value="all">All</option>
-                    <option value="created">Created</option>
-                    <option value="api">Exist</option>
+                <select onChange={e =>handleFilterCreated(e)}> 
+                    <option value="all">all</option>
+                    <option value="created">created</option>
                 </select>
-            {    
-                allPokemons?.map((p)=>{
-                    return(
-                        <Fragment className='any'>
-                            <Link to={"/home/" + p.id}>
-                        <Card name={p.name} image={p.image} type={p.type} />
-                            </Link>
-                        </Fragment>
-                    )
+                <select onChange={e => handleFIlterType(e)}> 
+                    <option value="all">all</option>  
+                    <option value="normal">normal</option>  
+                    <option value="grass">grass</option>  
+                    <option value="poison">poison</option>  
+                    <option value="fire">fire</option>  
+                    <option value="flying">flying</option>  
+                    <option value="water">water</option>  
+                    <option value="bug">bug</option>  
+                    <option value="electric">electric</option>  
+                    <option value="ground">ground</option>  
+                    <option value="fairy">fairy</option>  
+                </select>
+                </Div>
+            <div>
+                <Paginado
+                pokemonsPerPage= {pokemonsPerPage}
+                allPokemons= {allPokemons.length}
+                paginado= {paginado}
+                />
+                {    
+                    currentPokemons?.map((p)=>{
+                        // if (typeof p.types !== 'string'){
+                        //     p.types.map()
+                        // }
+                        return(
+                            <Fragment >
+                                <Link to={"/pokemons/" + p.id}>
+                            <Card name={p.name} image={p.image} type={p.types} />
+                                </Link>
+                            </Fragment>
+                        )
                 })
-            }
+                }
             </div>
         </div>
     )

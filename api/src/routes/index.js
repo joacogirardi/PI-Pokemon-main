@@ -12,15 +12,35 @@ const router = Router();
 
 const allPokes = async ()=>{
     const url = await axios.get("https://pokeapi.co/api/v2/pokemon");
+    const next = await axios.get(url.data.next);
     const results = url.data.results;
+    const result2 = next.data.results;
     const pokedata = [];
+    //first 20
     for(let i = 0 ; i < results.length ; i++) {
         const pokes = await axios.get(results[i].url);
         const pokeparams = pokes.data;
         pokedata.push({
             id : pokeparams.id,
             name : pokeparams.name,
-            types : pokeparams.types.map((e) => e.type.name),
+            types : pokeparams.types.map((e) => e.type.name).join(", "),
+            hp : pokeparams.stats[0].base_stat,
+            attack : pokeparams.stats[1].base_stat,
+            defense : pokeparams.stats[2].base_stat,
+            speed : pokeparams.stats[5].base_stat,
+            height : pokeparams.height,
+            weight : pokeparams.weight,
+            image : pokeparams.sprites.other.home.front_default
+        });
+    }
+    //+20
+    for(let i = 0 ; i < result2.length ; i++) {
+        const pokes = await axios.get(result2[i].url);
+        const pokeparams = pokes.data;
+        pokedata.push({
+            id : pokeparams.id,
+            name : pokeparams.name,
+            types : pokeparams.types.map((e) => e.type.name).join(", "),
             hp : pokeparams.stats[0].base_stat,
             attack : pokeparams.stats[1].base_stat,
             defense : pokeparams.stats[2].base_stat,
@@ -38,7 +58,7 @@ const dbdata = async ()=>{
     return await Pokemon.findAll({
         include : {
             model : Type,                    //incluye los atributos del model type
-            attributes : ['id','name'],
+            attributes : ['name'],
             throught : {                     //mediante
                 attributes : [],
             },

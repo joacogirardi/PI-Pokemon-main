@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+body {
+  background: #03001e;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff2dc3, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f822bb, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
