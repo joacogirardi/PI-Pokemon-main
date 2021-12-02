@@ -8,6 +8,10 @@ display: flex;
 display: inline-grid;
 `
 
+const Button = styled.button`
+margin : 1px
+`
+
 export default function Paginado({pokemonsPerPage, allPokemons, paginado}) {
     const pageNum = [];
 
@@ -22,7 +26,7 @@ export default function Paginado({pokemonsPerPage, allPokemons, paginado}) {
                 pageNum&&
                 pageNum.map(num =>(
                     <Li key = {num}>
-                    <button href="!#" onClick={() => paginado(num)}> {num} </button>
+                    <Button href="!#" onClick={() => paginado(num)}> {num} </Button>
                     </Li>
                 ))}
             </ul>

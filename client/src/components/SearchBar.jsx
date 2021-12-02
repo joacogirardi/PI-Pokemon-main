@@ -19,15 +19,22 @@ export default function SearchBar(){
     }        
 
 
+    const Div = styled.div`
+    position: relative;
+    top: 40px;
+    left : 129px;
+    height : 24px;
+    `
+
     return (
-        <div>
+        <Div>
             <input
             type = 'text'
             placeholder = 'Search by name...'
             onChange={(e)=> handleInputChange(e)}
             />
             <button type='submit' onClick={(e)=> handleSubmit(e)}>search </button>
-        </div>
+        </Div>
     )
 
 } 

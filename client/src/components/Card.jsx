@@ -1,21 +1,44 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
+const H4 = styled.h4`
+color: white;
+font-size: 13px;
+margin: 5px;
+`
+
+const H3 = styled.h3`
+background-color: #3a9fbb99;
+color: white;
+`
+
+const H2 = styled.h2`
+font-size: 13px;
+display: inline-flex;
+justify-content: space-around;
+color: #999999e0;
+margin: 8px;
+`
 
 const Div = styled.div`
-background-color: #0000008a;
+background-color: #3a00299e;
 display: inline-grid;
-padding: 20px;
-margin: 20px;
-border-radius: 52px;
+padding: 0px;
+margin: 35px;
+border-radius: 36px;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 `
 
 export default function Card ({name, image, type }){
     return(
         <Div>
             <img src={image} alt="img not found" width="200px" height="250px" />
-            <h3>{name}</h3>
-            <h4>{type}</h4>
+            <H3>{name}</H3>
+            <H4>{type}</H4>
+            <Link to={"/pokemons/"}>
+            <H2>see details</H2>
+            </Link>
         </Div>
     )
 }
