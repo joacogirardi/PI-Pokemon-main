@@ -131,7 +131,7 @@ router.get('/types', async(req, res)=>{
     const allresults = await Type.findAll({
         attributes : ["name"]
     });
-    res.send(allresults)
+    res.send(allresults.map(e=>e.name))
 });
  
 //create new pokemon in DB

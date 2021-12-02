@@ -2,9 +2,7 @@
 const initialState = {
     pokemons: [],
     pokemonsTotal: [],
-	pokemonDetail: {},
 	pokemonsTypes: [],
-	pokemonsFilter: [],
 };
 
 const rootReducer = (state = initialState, action)=>{
@@ -30,10 +28,72 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 pokemonsTotal : action.payload === 'all' ? state.pokemons : createdFilter
             }
+        case 'ORDER_BY_NAME' :
+            let sortbyname = action.payload === "asc" ?
+                state.pokemonsTotal.sort(function(a,b){   
+                    if(a.name > b.name){
+                        return 1
+                    }
+                    if(b.name > a.name) {
+                        return -1
+                    }
+                    return 0                          //si son iguales se mantienen en la misma posicion
+                }) :
+                state.pokemonsTotal.sort(function(a, b){
+                    if(a.name > b.name){
+                        return -1
+                    }
+                    if(b.name > a.name) {
+                        return 1
+                    }
+                    return 0
+                });
+                return{
+                    ...state,
+                    pokemonsTotal : sortbyname
+                }
+                case 'ORDER_BY_ATTACK' :
+                    let sortbyAttack = action.payload === "asc" ?
+                        state.pokemonsTotal.sort(function(a,b){   
+                            if(a.attack > b.attack){
+                                return 1
+                            }
+                            if(b.attack > a.attack) {
+                                return -1
+                            }
+                            return 0                         
+                        }) :
+                        state.pokemonsTotal.sort(function(a, b){
+                            if(a.attack > b.attack){
+                                return -1
+                            }
+                            if(b.attack > a.attack) {
+                                return 1
+                            }
+                            return 0
+                        });
+                        return{
+                            ...state,
+                            pokemonsTotal : sortbyAttack
+                        }
+                case 'GET_NAME_POKEMONS' :
+                    return{
+                        ...state,
+                        pokemonsTotal : action.payload
+                    }
+                case 'POST_POKEMON' :
+                    return{
+                        ...state,
+                    }
+                case 'GET_TYPES' :
+                    return{
+                        ...state,
+                        pokemonsTypes : action.payload
+                    }
+                    
         default :
             return state;
     }
 }
-
 
 export default rootReducer;

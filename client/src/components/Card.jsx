@@ -15,7 +15,7 @@ export default function Card ({name, image, type }){
         <Div>
             <img src={image} alt="img not found" width="200px" height="250px" />
             <h3>{name}</h3>
-            {/* <h4>{type}</h4> */}
+            <h4>{type}</h4>
         </Div>
     )
 }
