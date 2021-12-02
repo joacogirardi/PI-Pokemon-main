@@ -10,7 +10,7 @@ export default function SearchBar(){
 
     const handleInputChange = function(e){
         e.preventDefault();
-        setName(e.target.value);
+        // setName(e.target.value);
 
     }
     const handleSubmit = function (e) {
@@ -24,6 +24,11 @@ export default function SearchBar(){
     top: 40px;
     left : 129px;
     height : 24px;
+    cursor: pointer;
+    `
+    const Button = styled.button`
+    background-color: #ffcb05;
+    border-color: #e7b700;
     `
 
     return (
@@ -33,7 +38,7 @@ export default function SearchBar(){
             placeholder = 'Search by name...'
             onChange={(e)=> handleInputChange(e)}
             />
-            <button type='submit' onClick={(e)=> handleSubmit(e)}>search </button>
+            <Button type='submit' onClick={(e)=> handleSubmit(e)}>search </Button>
         </Div>
     )
 
