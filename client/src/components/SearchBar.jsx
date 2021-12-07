@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { getPokeNames } from '../actions';
 import styled from 'styled-components';
+import style from '../components/searchbar.css';
 
 export default function SearchBar(){
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export default function SearchBar(){
 
     const handleInputChange = function(e){
         e.preventDefault();
-        // setName(e.target.value);
+        setName(e.target.value);
 
     }
     const handleSubmit = function (e) {
@@ -24,7 +25,6 @@ export default function SearchBar(){
     top: 40px;
     left : 129px;
     height : 24px;
-    cursor: pointer;
     `
     const Button = styled.button`
     background-color: #ffcb05;
@@ -32,14 +32,14 @@ export default function SearchBar(){
     `
 
     return (
-        <Div>
+        <div className='searchbar'>
             <input
             type = 'text'
             placeholder = 'Search by name...'
             onChange={(e)=> handleInputChange(e)}
             />
             <Button type='submit' onClick={(e)=> handleSubmit(e)}>search </Button>
-        </Div>
+        </div>
     )
 
 } 

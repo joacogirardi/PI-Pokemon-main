@@ -112,9 +112,11 @@ router.get('/pokemons/:id', async (req, res)=>{
     else {
         const dbpoke = await Pokemon.findOne({
             where : { id : id },
-            // attributes : []
+            // attributes : [] 
         });
-    res.send(dbpoke)
+    const pokearrdb = [];
+    pokearrdb.push(dbpoke);
+    res.send(pokearrdb);
     }
 }); 
  

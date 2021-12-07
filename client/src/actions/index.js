@@ -31,18 +31,22 @@ export const getPokeNames = (payload)=>{
 
 export const GetTypes = ()=>{
    return async function(dispatch){
-       let json = await axios.get('http://localhost:3001/types',{
-
-       });
-       return dispatch({
-            type : 'GET_TYPES',
-            payload : json.data   
-        })
+       try{
+           let json = await axios.get('http://localhost:3001/types',{
+   
+           });
+           return dispatch({
+                type : 'GET_TYPES',
+                payload : json.data   
+           })
+        } catch(error) {
+            console.log(error)
+        }
    } 
 }
 
 export const PostPoke = (payload)=>{
-    return async function(dispatch){
+    return async function(){
         let json = await axios.post('http://localhost:3001/pokemons', payload);
         return json;
     }
@@ -74,5 +78,20 @@ export const orderByAttack = (payload)=>{
     return {
         type : 'ORDER_BY_ATTACK',
         payload
+    } 
+}
+
+export const getDetail = (id)=>{
+    return async function(dispatch){
+        try{
+            let url = 'http://localhost:3001/pokemons/' + id;
+            const json = await axios.get(url);
+            return dispatch({
+                type : 'GET_DETAILS',
+                payload : json.data
+            })
+        } catch(error){
+            console.log(error)
+        }
     }
 }

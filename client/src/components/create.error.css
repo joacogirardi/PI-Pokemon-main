@@ -1,0 +1,13 @@
+.error {
+    color: red;
+    background-color: #720000;
+    width: fit-content;
+    padding: 5px;
+    position: relative;
+    position: relative;
+    padding: 8px;
+    border-radius: 61px;
+    font-size: 14px;
+    margin: auto;
+    bottom: 6px;
+}

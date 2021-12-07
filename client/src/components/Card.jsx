@@ -30,13 +30,13 @@ border-radius: 36px;
 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 `
 
-export default function Card ({name, image, type }){
+export default function Card ({name, image, type, id }){
     return(
         <Div>
             <img src={image} alt="img not found" width="200px" height="250px" />
             <H3>{name}</H3>
             <H4>{type}</H4>
-            <Link to={"/pokemons/"}>
+            <Link to={"/pokemons/" + id}>
             <H2>see details</H2>
             </Link>
         </Div>

@@ -110,12 +110,8 @@ const Home = function  (){
 
         <div>
             <Div>
-            <Link to={"/home"}>
-            <img className="logo" src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg' alt='not found' />
-            </Link>
-            {/* <Button onClick={e=> {HandleClick(e)}}>
-                Remove filters
-            </Button> */}
+            
+            <img className="logo" onClick="window.location.href=window.location.href" src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg' alt='not found' />
             <SearchBar />
                 <Select onChange={e =>handleSortName(e)}>
                 <option value="" disabled selected>Order by Name</option>
@@ -146,9 +142,9 @@ const Home = function  (){
                     <option value="ground">ground</option>  
                     <option value="fairy">fairy</option>  
                 </Select>
-                <Link to= '/pokemon'>
-                <Button>Create Pokemon</Button>    
-                </Link>
+                    <Link to= '/pokemon'>
+                    <Button>Create Pokemon</Button>
+                    </Link>    
                 </Div>
             <div>
                 {   currentPokemons.length > 0 ? (
@@ -160,10 +156,9 @@ const Home = function  (){
                             else t = p.types
                             return(
                                 <Fragment >
-                            <Card name={p.name} image={p.image} type={t} />
+                            <Card name={p.name} image={p.image} type={t} id={p.id}/>
                             </Fragment>
                         )
-                        
                     })) : 
                     <div>
                         <Img src={"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cce92d41-6a99-4bea-80d5-d30124fc97b6/d2hi2ft-c5563642-9be4-497a-95f1-396611ce7491.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2NjZTkyZDQxLTZhOTktNGJlYS04MGQ1LWQzMDEyNGZjOTdiNlwvZDJoaTJmdC1jNTU2MzY0Mi05YmU0LTQ5N2EtOTVmMS0zOTY2MTFjZTc0OTEuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.G1ZlQodzDayMT0oj3w6WxGYL4go1hm92C7mAZkv9v88"} alt="loading"/>
