@@ -112,7 +112,6 @@ router.get('/pokemons/:id', async (req, res)=>{
     else {
         const dbpoke = await Pokemon.findOne({
             where : { id : id },
-            // attributes : [] 
         });
     const pokearrdb = [];
     pokearrdb.push(dbpoke);
@@ -133,7 +132,7 @@ router.get('/types', async(req, res)=>{
     const allresults = await Type.findAll({
         attributes : ["name"]
     });
-    res.send(allresults.map(e=>e.name))
+    res.send(allresults.map(e=>e.name)) 
 });
  
 //create new pokemon in DB
@@ -152,6 +151,7 @@ router.post('/pokemons', async(req, res)=>{
 
     const newpoke = await Pokemon.create({
         name : name,
+        type : types.join(', '), 
         hp : hp,
         attack : attack,
         defense : defense,
@@ -168,4 +168,5 @@ router.post('/pokemons', async(req, res)=>{
 });
  
 module.exports = router;
-
+ 
+  

@@ -66,6 +66,9 @@ function validate(input) {
     if (!input.name) {
         errors.name = '⚠️ Name is required ⚠️';
     }
+    if (!input.types.length) {
+        errors.types = '⚠️ Type/s is required ⚠️'
+    }
     if (!input.hp) {
         errors.hp = '⚠️ Life is required ⚠️'
     }
@@ -182,6 +185,9 @@ export default function PokemonCreate() {
                         <Li>Types selected : {input.types.map(e=>e+', ')} </Li>
 
                     </ul>
+                    {errors.types && (
+                        <p className='error'>{errors.types}</p>
+                    )}
                 </div>
 
                 <div>

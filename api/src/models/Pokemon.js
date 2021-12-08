@@ -13,6 +13,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       unique : true
     },
+    type : {
+      type:DataTypes.STRING,
+    },
     hp : {
       type: DataTypes.INTEGER,
     },
