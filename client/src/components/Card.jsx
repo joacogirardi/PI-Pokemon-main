@@ -22,7 +22,7 @@ margin: 8px;
 `
 
 const Div = styled.div`
-background-color: #3a00299e;
+background-color: #000a2a8c;;
 display: inline-grid;
 padding: 0px;
 margin: 35px;

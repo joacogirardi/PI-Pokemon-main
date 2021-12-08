@@ -67,7 +67,7 @@ function validate(input) {
         errors.name = '⚠️ Name is required ⚠️';
     }
     if (!input.types.length) {
-        errors.types = '⚠️ Type/s is required ⚠️'
+        errors.types = '⚠️ Types is required ⚠️'
     }
     if (!input.hp) {
         errors.hp = '⚠️ Life is required ⚠️'
@@ -174,7 +174,7 @@ export default function PokemonCreate() {
 
                 <div>
                     <P>What type does it belong to?</P>
-                    <Select onChange={e => handleSelect(e)}>
+                    <Select onChange={e => handleSelect(e)} value={input.types}>
                         <option value="" disabled selected>Type</option>
 
                         {types.map((t) => (
@@ -183,7 +183,6 @@ export default function PokemonCreate() {
                     </Select>
                     <ul>
                         <Li>Types selected : {input.types.map(e=>e+', ')} </Li>
-
                     </ul>
                     {errors.types && (
                         <p className='error'>{errors.types}</p>

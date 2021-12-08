@@ -26,7 +26,8 @@ top: 35px;
 color: white;
 left: 135px;
 border-color: black;
-border-radius: 6px
+border-radius: 6px;
+cursor : pointer;
 `
 
 const Button = styled.button`
