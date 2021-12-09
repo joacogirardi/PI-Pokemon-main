@@ -19,13 +19,6 @@ export default function SearchBar(){
         dispatch(getPokeNames(name))
     }        
 
-
-    const Div = styled.div`
-    position: relative;
-    top: 40px;
-    left : 129px;
-    height : 24px;
-    `
     const Button = styled.button`
     background-color: #ffcb05;
     border-color: #e7b700;

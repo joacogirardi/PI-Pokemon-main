@@ -64,11 +64,11 @@ const Home = function  (){
     const dispatch = useDispatch();
     const allPokemons = useSelector((s)=> s.pokemonsTotal);
     //paginado
-    const [currentPage, setCurrentPage] = useState(1);                      //actual page
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);             //pokes per page
-    const indexLastPokemon = currentPage * pokemonsPerPage                              //index last pokemon
-    const indexFirstPokemon = indexLastPokemon - pokemonsPerPage                        //index first pokemon
-    const currentPokemons = allPokemons.slice(indexFirstPokemon, indexLastPokemon)      //pokemons actual page
+    const [currentPage, setCurrentPage] = useState(1);                                //actual page
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);                       //pokes per page
+    const indexLastPokemon = currentPage * pokemonsPerPage                                        //index last pokemon
+    const indexFirstPokemon = indexLastPokemon - pokemonsPerPage                                  //index first pokemon
+    const currentPokemons = allPokemons.slice(indexFirstPokemon, indexLastPokemon)                //pokemons actual page
     
     
     const paginado = (pageNumber)=> {

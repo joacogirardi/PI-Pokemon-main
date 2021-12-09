@@ -21,12 +21,14 @@ export default function Paginado({pokemonsPerPage, allPokemons, paginado}) {
 
     return(
         <nav>
-            <ul className='paginado'>
+            <ul>
                 {
                 pageNum&&
                 pageNum.map(num =>(
                     <Li key = {num}>
-                    <Button href="!#" onClick={() => paginado(num)}> {num} </Button>
+                        <a href="#">
+                    <Button onClick={() => paginado(num)}> {num} </Button>
+                        </a>
                     </Li>
                 ))}
             </ul>

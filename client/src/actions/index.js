@@ -14,7 +14,7 @@ export const getPokemons= ()=>{
         }
     }
 }
-
+ 
 export const getPokeNames = (payload)=>{
     return async function(dispatch){
         try {
@@ -47,8 +47,12 @@ export const GetTypes = ()=>{
 
 export const PostPoke = (payload)=>{
     return async function(){
-        let json = await axios.post('http://localhost:3001/pokemons', payload);
-        return json;
+        try {
+            let json = await axios.post('http://localhost:3001/pokemons', payload);
+            return json;
+        } catch(error){
+            console.log(error)
+        }
     }
 }
 

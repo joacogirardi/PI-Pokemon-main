@@ -5,6 +5,8 @@ import { PostPoke, GetTypes } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import error from '../components/create.error.css';
+import error2 from '../components/create.error.2.css';
+import btn from '../components/removebtn.css'
 
 const Div = styled.div`
 background-color: #58003e61;
@@ -18,8 +20,9 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 const Li = styled.li`
 color: white;
 position : relative;
-bottom: 8px;
+bottom: 20px;
 font-size: 14px;
+z-index: -1;
 `
 
 const H1 = styled.h1`
@@ -149,9 +152,18 @@ export default function PokemonCreate() {
         history.push('/home');
     }
 
+    function handleRemove(e){
+        setInput({
+            ...input,
+            types : input.types.filter(t => t !== e)
+        })
+
+    }
+
     useEffect(() => {
         dispatch(GetTypes())
     }, [dispatch]);
+
 
     return (
         <Div>
@@ -181,9 +193,16 @@ export default function PokemonCreate() {
                             <option value={t}> {t}</option>
                         ))}
                     </Select>
-                    <ul>
-                        <Li>Types selected : {input.types.map(e=>e+', ')} </Li>
-                    </ul>
+                   
+                    {input.types.map(e=>
+                        <ul>
+                            <button type='button' className='btn' onClick={()=> handleRemove(e)}> x </button>
+                            <Li>
+                            {e +', '}
+                            </Li>
+                        </ul>
+                        )}
+                   
                     {errors.types && (
                         <p className='error'>{errors.types}</p>
                     )}
@@ -274,7 +293,7 @@ export default function PokemonCreate() {
                 </div>
 
                 <div>
-                    <P>upload a photo of your pokemon</P>
+                    <P>Upload a photo of your pokemon</P>
                     <Input
                         placeholder="Image"
                         type='text'
@@ -286,8 +305,19 @@ export default function PokemonCreate() {
                         <p className='error'>{errors.image}</p>
                     )}
                 </div>
-
-                <Button type='submit'>Create Pokemon!</Button>
+                {
+                    !errors.name &&
+                    !errors.types &&
+                    !errors.hp &&
+                    !errors.attack &&
+                    !errors.defense &&
+                    !errors.speed &&
+                    !errors.height &&
+                    !errors.weight &&
+                    !errors.image
+                    ? <Button type='submit'>Create Pokemon</Button> : <p className='error2'> Check the errors on the fields <br /> before continuing</p>
+                }
+                {/* <Button type='submit'>Create Pokemon!</Button> */}
                 <Link to='/home'>
                     <Button>Back Home</Button>
                 </Link>

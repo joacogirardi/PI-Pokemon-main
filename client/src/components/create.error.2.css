@@ -1,0 +1,8 @@
+.error2 {
+    color: white;
+    position: relative;
+    top: 21px;
+    background-color: #cd0000;
+    border-radius: 11px;
+    font-variant-caps: all-small-caps;
+}

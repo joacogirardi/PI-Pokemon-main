@@ -53,50 +53,49 @@ const rootReducer = (state = initialState, action)=>{
                     ...state,
                     pokemonsTotal : sortbyname
                 }
-                case 'ORDER_BY_ATTACK' :
-                    let sortbyAttack = action.payload === "asc" ?
-                        state.pokemonsTotal.sort(function(a,b){   
-                            if(a.attack > b.attack){
-                                return 1
-                            }
-                            if(b.attack > a.attack) {
-                                return -1
-                            }
-                            return 0                         
-                        }) :
-                        state.pokemonsTotal.sort(function(a, b){
-                            if(a.attack > b.attack){
-                                return -1
-                            }
-                            if(b.attack > a.attack) {
-                                return 1
-                            }
-                            return 0
-                        });
-                        return{
-                            ...state,
-                            pokemonsTotal : sortbyAttack
-                        }
-                case 'GET_NAME_POKEMONS' :
-                    return{
-                        ...state,
-                        pokemonsTotal : action.payload
+        case 'ORDER_BY_ATTACK' :
+            let sortbyAttack = action.payload === "asc" ?
+                state.pokemonsTotal.sort(function(a,b){   
+                    if(a.attack > b.attack){
+                        return 1
                     }
-                case 'POST_POKEMON' :
-                    return{
-                        ...state,
+                    if(b.attack > a.attack) {
+                        return -1
                     }
-                case 'GET_TYPES' :
-                    return{
-                        ...state,
-                        pokemonsTypes : action.payload
+                    return 0                         
+                }) :
+                state.pokemonsTotal.sort(function(a, b){
+                    if(a.attack > b.attack){
+                        return -1
                     }
-                case 'GET_DETAILS' :
-                    return {
-                        ...state,
-                        detail : action.payload
+                    if(b.attack > a.attack) {
+                        return 1
                     }
-                    
+                    return 0
+                });
+                return{
+                    ...state,
+                    pokemonsTotal : sortbyAttack
+                }
+        case 'GET_NAME_POKEMONS' :
+            return{
+                ...state,
+                pokemonsTotal : action.payload
+            }
+        case 'POST_POKEMON' :
+            return{
+                ...state,
+            }
+        case 'GET_TYPES' :
+            return{
+                ...state,
+                pokemonsTypes : action.payload
+            }
+        case 'GET_DETAILS' :
+            return {
+                ...state,
+                detail : action.payload
+            }
         default :
             return state;
     }

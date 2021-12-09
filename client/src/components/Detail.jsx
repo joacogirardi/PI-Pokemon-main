@@ -8,7 +8,7 @@ import load from "../components/detailoading.css"
 
 
 const Div = styled.div`
-background-color: #3a00299e;
+background-color: #001a329e;
 display: inline-grid;
 padding: 0px;
 margin: 35px;
