@@ -58,6 +58,30 @@ const allPokes = async ()=>{
     }
 };
 
+const pokesapi = async (req, res)=>{
+    try{
+        const {name} = req.body;
+        let url = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const pokeparams = await url.data;
+        const pokedata = {
+            id : pokeparams.id,
+            name : pokeparams.name,
+            types : pokeparams.types.map((e) => e.type.name).join(", "),
+            hp : pokeparams.stats[0].base_stat,
+            attack : pokeparams.stats[1].base_stat,
+            defense : pokeparams.stats[2].base_stat,
+            speed : pokeparams.stats[5].base_stat,
+            height : pokeparams.height,
+            weight : pokeparams.weight,
+            image : pokeparams.sprites.other.home.front_default
+        };
+        return pokedata
+    }
+    catch(e){
+        console.log(e)
+    }
+}
+
 
 const dbdata = async ()=>{
     try{
