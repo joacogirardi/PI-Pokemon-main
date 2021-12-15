@@ -2,7 +2,7 @@
 # Pokemon API
 
 <p align="center">
-  <img height="350" src="./home.png" />
+  <img height="350" src="./Home.png" />
 </p>
 <p align="center">
   <img height="350" src="./paginado.png" />
